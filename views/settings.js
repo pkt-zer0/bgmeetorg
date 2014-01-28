@@ -27,18 +27,20 @@ if (Meteor.isClient) {
       , addDays = function (num) {
           return start.clone().add(num).days();
         }
-      , days = _.map(_.range(7), addDays);
+      , days = _.map(_.range(7), addDays)
+      , weekly = Meteor.user().profile.available;
     return _.map(days, function (date) {
       var doc = Exceptions.findOne(
             { userId: Meteor.userId(), date: date }
           , { available: 1 }
           )
         , defaults = { available: '' }
-        , data = _.extend(defaults, doc);
+        , data = _.extend(defaults, doc)
+        , regular = weekly[_.dayOfWeek(date)];
       return {
         date: date
-      , shortDate: date.toString(dateFormat)
-      , value: data.available
+      , regular: regular
+      , override: data.available
       , doc: data._id
       };
     });
@@ -80,13 +82,19 @@ if (Meteor.isClient) {
   Template.exceptions.helpers({
     // TODO: Display year + month in a row above, with colspans.
     // TODO: Bottom header row is day + date (e.g. Mon 12)
-    days : function () { return _.pluck(dailyData(), 'shortDate'); }
+    days : function () {
+      return _.map(dailyData(), function (data) {
+        return data.date.toString(dateFormat);
+      });
+    }
   , available : function () {
       return _.map(dailyData(), function (data) {
-        var toggleClass = toggleClasses[data.value];
+        var overrideName = toggleClasses[data.override]
+          , regularCss = toggleClasses[data.regular] + "-def"
+          , css = [overrideName, regularCss].join(" ");
         return _.extend(data, {
-          text: toggleClass || ' '
-        , css: toggleClass
+          text: overrideName
+        , css: css
         });
       });
     }
@@ -95,7 +103,7 @@ if (Meteor.isClient) {
     'click .pager .prev' : _.partial(alterWeek, -1)
   , 'click .pager .next' : _.partial(alterWeek, 1)
   , 'click .toggle' : function () {
-      var newValue = nextYesNoEmpty(this.value)
+      var newValue = nextYesNoEmpty(this.override)
         , doc = this.doc;
       // NOTE: Could use upsert here, but that'd need a Meteor method, it seems
       if (doc) {

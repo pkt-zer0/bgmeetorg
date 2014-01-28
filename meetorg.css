@@ -36,6 +36,12 @@ th {
 .toggle {
     cursor: pointer;
 }
+.toggle.yes-def {
+    background-color: #d9f6d9;
+}
+.toggle.no-def {
+    background-color: #fdcccc;
+}
 .toggle.yes {
     background-color: #b2edb2;
 }

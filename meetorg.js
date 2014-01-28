@@ -31,7 +31,9 @@ if (Meteor.isClient) {
   });
 }
 
-// TODO: display aggregated availability in a table
+// TODO: display aggregated availability in a table (under events)
 // TODO: Chat
 // TODO: Game groups
-// TODO?: Cleanup of old exceptions (on server startup?)
+// TODO?: Cleanup of old exceptions (on server startup?).
+// TODO? --> or just remove non-overriding entries?
+// TODO?: Normalize timezones of dates to UTC?
