@@ -1,0 +1,18 @@
+<head>
+  <title>Boardgame meetup organizer</title>
+</head>
+
+<body>
+  {{loginButtons}}
+  {{> tabMenu}}
+</body>
+
+<template name="tabMenu">
+  <ul class="tabMenu">
+    {{#each tabs}}
+    <li class="{{selected}}">{{text}}</li>
+    {{/each}}
+  </ul>
+
+  {{{currentTab}}}
+</template>

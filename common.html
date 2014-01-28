@@ -1,0 +1,22 @@
+<template name="toggler">
+  <!-- TODO: prefix column (with username, for example) -->
+  <tr>
+    {{#each this}}
+    <td class="toggle {{css}}">{{text}}</td>
+    {{/each}}
+  </tr>
+</template>
+<template name="header">
+  <tr>
+    {{#each this}}
+    <th>{{this}}</th>
+    {{/each}}
+  </tr>
+</template>
+<template name="pager">
+  <tr class="pager">
+    <td class="prev">&lt;</td>
+    <td class="filler" colspan="5"></td>
+    <td class="next">&gt;</td>
+  </tr>
+</template>
