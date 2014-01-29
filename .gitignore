@@ -215,8 +215,7 @@ pip-log.txt
 .mr.developer.cfg
 
 #################
-## Webstorm + Meteor
+## Webstorm
 #################
 
 .idea
-.meteor
