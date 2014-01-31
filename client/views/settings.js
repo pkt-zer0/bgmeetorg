@@ -3,6 +3,27 @@
 var dateFormat = "MMM d"
   , exceptionsStart = _.sessionVar('exceptionsStart');
 
+// Settings
+var updateUsername = function () {
+  var input = $('#username');
+  var newName = input.val();
+  if (newName) {
+    Meteor.users.update(
+      { _id: Meteor.userId() },
+      { $set: { 'profile.name' : newName } }
+    );
+  }
+};
+Template.settings.helpers({
+  username: function () { return Meteor.user().profile.name; }
+});
+Template.settings.events({
+  'blur #username': updateUsername
+, 'keyup #username': function (event) {
+    if (event.which === 13) { updateUsername(); }
+  }
+});
+
 // Regular
 Template.regular.helpers({
   days : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -87,5 +108,3 @@ Meteor.startup(function () {
   var thisWeek = _.startOfWeek(Date.today());
   exceptionsStart.setDefault(thisWeek);
 });
-
-// TODO: Field to change username
