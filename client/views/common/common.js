@@ -11,18 +11,13 @@ toggle = (function () {
             values[(index + 1) % values.length];
         };
       }
-  // FIXME: Use a lookup function instead
-    , classes =
-      { y : 'yes'
-      , n : 'no'
-      , '': ''
-      }
+    , classes = { y : 'yes', n : 'no' }
     , yesNo = ['y', 'n']
     , yesNoEmpty = yesNo.concat([''])
     , nextYesNo = next(yesNo)
     , nextYesNoEmpty = next(yesNoEmpty);
   return {
-    classes: classes
+    classes: function (value) { return classes[value] || ''; }
   , yesNo: yesNo
   , yesNoEmpty: yesNoEmpty
   , nextYesNo: nextYesNo

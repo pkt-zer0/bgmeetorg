@@ -31,7 +31,7 @@ Template.regular.helpers({
     // TODO?: Use a separate collection for this, rather than the profile?
     var data = Meteor.user().profile.available;
     return _.map(data, function(value, index) {
-      var toggleName = toggle.classes[value];
+      var toggleName = toggle.classes(value);
       return {
         data: value
       , css: toggleName
@@ -68,8 +68,8 @@ Template.exceptions.helpers({
   }
 , available : function () {
     return _.map(selfAvailability(), function (data) {
-      var overrideName = toggle.classes[data.override]
-        , regularCss = toggle.classes[data.regular] + "-def"
+      var overrideName = toggle.classes(data.override)
+        , regularCss = toggle.classes(data.regular) + "-def"
         , css = [overrideName, regularCss].join(" ");
       return _.extend(data, {
         text: overrideName

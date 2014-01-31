@@ -19,7 +19,7 @@ Template.events.helpers({
       , start = calendarStart.get() || Date.today()
       , getUserData = function (user) {
           var displayData = function (data) {
-              var text = toggle.classes[data.combined];
+              var text = toggle.classes(data.combined);
               return _.extend(data, {
                 text: text
               , css: text
