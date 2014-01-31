@@ -30,7 +30,7 @@ td.filler, th.filler {
     height: 20px;
 }
 
-.pager .prev, .pager .next {
+.pager.prev, .pager.next {
     background-color: lightgray;
 }
 

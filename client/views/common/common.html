@@ -1,31 +1,16 @@
-<!-- FIXME: redesign these to not include the tr, so prefixing doesn't need to be built it -->
 <!-- TODO: editable option for toggler to not always display a pointer cursor -->
 <template name="toggler">
-  <tr>
-    {{#each this}}
-    <td class="toggle {{css}}">{{text}}</td>
-    {{/each}}
-  </tr>
+  {{#each this}}
+  <td class="toggle {{css}}">{{text}}</td>
+  {{/each}}
 </template>
 <template name="header">
-  <tr>
-    {{#each this}}
-    <th>{{this}}</th>
-    {{/each}}
-  </tr>
+  {{#each this}}
+  <th>{{this}}</th>
+  {{/each}}
 </template>
 <template name="pager">
-  <tr class="pager">
-    {{#if before}}
-    <td class="filler" colspan="{{before}}"></td>
-    {{/if}}
-    <td class="prev">&lt;</td>
-    {{#if middle}}
-    <td class="filler" colspan="{{middle}}"></td>
-    {{/if}}
-    <td class="next">&gt;</td>
-    {{#if after}}
-    <td class="filler" colspan="{{after}}"></td>
-    {{/if}}
-  </tr>
+  <td class="pager prev">&lt;</td>
+  <td class="pager filler" colspan="5"></td>
+  <td class="pager next">&gt;</td>
 </template>

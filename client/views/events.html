@@ -1,18 +1,17 @@
 <template name="events">
   <table class="schedule" id="calendar">
-    {{> pager pagerSettings}}
+    <tr>
+      <td class="filler"></td>
+      {{> pager}}
+    </tr>
     <tr>
       <th class="filler"></th>
-      {{#each header}}
-      <th>{{this}}</th>
-      {{/each}}
+      {{> header header}}
     </tr>
     {{#each rows}}
     <tr>
       <td>{{name}}</td>
-      {{#each available}}
-      <td class="toggle {{css}}">{{text}}</td>
-      {{/each}}
+      {{>toggler available}}
     </tr>
     {{/each}}
   </table>

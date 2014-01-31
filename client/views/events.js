@@ -35,8 +35,8 @@ Template.events.helpers({
   }
 });
 Template.events.events({
-  'click .pager .prev' : function () { calendarStart.alter(_.addWeeks(-1)); }
-, 'click .pager .next' : function () { calendarStart.alter(_.addWeeks(1)); }
+  'click .pager.prev' : function () { calendarStart.alter(_.addWeeks(-1)); }
+, 'click .pager.next' : function () { calendarStart.alter(_.addWeeks(1)); }
 });
 
 //-- Startup --

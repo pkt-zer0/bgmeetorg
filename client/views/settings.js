@@ -77,11 +77,10 @@ Template.exceptions.helpers({
       });
     });
   }
-, pagerSettings : { middle: 5 } // FIXME: Remove this
 });
 Template.exceptions.events({
-  'click .pager .prev' : function () { exceptionsStart.alter(_.addWeeks(-1)); }
-, 'click .pager .next' : function () { exceptionsStart.alter(_.addWeeks(1)); }
+  'click .pager.prev' : function () { exceptionsStart.alter(_.addWeeks(-1)); }
+, 'click .pager.next' : function () { exceptionsStart.alter(_.addWeeks(1)); }
 , 'click .toggle' : function () {
     // TODO: Upsert the opposite of regular availability as the exception, if nothing set/same as regular.
     // TODO: If already set, remove existing entry instead.
