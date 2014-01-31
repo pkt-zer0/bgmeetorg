@@ -44,3 +44,6 @@ Meteor.startup(function () {
   var thisWeek = _.startOfWeek(Date.today());
   calendarStart.setDefault(thisWeek);
 });
+
+// TODO: Summary row with the number of people
+// TODO: Create events, send notifications for them

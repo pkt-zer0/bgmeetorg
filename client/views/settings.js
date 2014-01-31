@@ -82,12 +82,17 @@ Template.exceptions.events({
   'click .pager.prev' : function () { exceptionsStart.alter(_.addWeeks(-1)); }
 , 'click .pager.next' : function () { exceptionsStart.alter(_.addWeeks(1)); }
 , 'click .toggle' : function () {
-    // TODO: Upsert the opposite of regular availability as the exception, if nothing set/same as regular.
-    // TODO: If already set, remove existing entry instead.
-    var newValue = toggle.nextYesNoEmpty(this.override)
+    var oldValue = this.override
+      , newValue = toggle.nextYesNo(this.regular)
       , doc = this.doc;
-    // NOTE: Could use upsert here, but that'd need a Meteor method, it seems
-    if (doc) {
+    // No longer an exception, corresponding document (if any) can be removed
+    if (oldValue === newValue) {
+      if (doc) {
+        Exceptions.remove({ _id: doc });
+      }
+    }
+    // Insert an exception, or update the existing one
+    else if (doc) {
       Exceptions.update(
         { _id: doc }
       , { $set: { available: newValue } }
