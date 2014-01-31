@@ -29,7 +29,6 @@ Meteor.startup(function () {
   currentTab.setDefault(tabs[0].template);
 });
 
-// TODO: Remove autopublish, manually manage subscriptions
 // TODO: Chat
 // TODO: Game groups -> use publish/subscribe to cache only data for the group
 // TODO?: Cleanup of old exceptions (on server startup?).

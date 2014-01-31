@@ -1,4 +1,4 @@
-/* global Meteor, Template, _, Exceptions, toggle, availabilityData */
+/* global Meteor, Template, Deps, _, Exceptions, toggle, availabilityData */
 
 var dateFormat = "MMM d"
   , exceptionsStart = _.sessionVar('exceptionsStart');
@@ -108,7 +108,8 @@ Template.exceptions.events({
 });
 
 //-- Startup --
-Meteor.startup(function () {
-  var thisWeek = _.startOfWeek(Date.today());
-  exceptionsStart.setDefault(thisWeek);
+var thisWeek = _.startOfWeek(Date.today());
+exceptionsStart.setDefault(thisWeek);
+Deps.autorun(function () {
+  Meteor.subscribe("user-availability", exceptionsStart.get(), Meteor.userId());
 });

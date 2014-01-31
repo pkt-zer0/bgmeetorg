@@ -1,4 +1,4 @@
-/* global Meteor, Template, _, toggle, availabilityData */
+/* global Meteor, Template, Deps, _, toggle, availabilityData */
 
 // TODO?: Maybe have exceptionStart and calendarStart be shared in the session?
 var calendarStart = _.sessionVar('calendarStart');
@@ -40,9 +40,10 @@ Template.events.events({
 });
 
 //-- Startup --
-Meteor.startup(function () {
-  var thisWeek = _.startOfWeek(Date.today());
-  calendarStart.setDefault(thisWeek);
+var thisWeek = _.startOfWeek(Date.today());
+calendarStart.setDefault(thisWeek);
+Deps.autorun(function () {
+  Meteor.subscribe("group-availability", calendarStart.get());
 });
 
 // TODO: Summary row with the number of people
