@@ -18,6 +18,10 @@ th {
     background-color: dimgray;
     color: white;
 }
+td.filler, th.filler {
+    border: none;
+    background: none;
+}
 
 .schedule th, .schedule td {
     text-align: center;
@@ -28,9 +32,6 @@ th {
 
 .pager .prev, .pager .next {
     background-color: lightgray;
-}
-.pager .filler {
-    border-top: none;
 }
 
 .toggle {

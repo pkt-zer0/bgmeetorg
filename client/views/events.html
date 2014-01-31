@@ -1,3 +1,19 @@
 <template name="events">
-  <h1>TODO: Events</h1>
+  <table class="schedule" id="calendar">
+    {{> pager pagerSettings}}
+    <tr>
+      <th class="filler"></th>
+      {{#each header}}
+      <th>{{this}}</th>
+      {{/each}}
+    </tr>
+    {{#each rows}}
+    <tr>
+      <td>{{name}}</td>
+      {{#each available}}
+      <td class="toggle {{css}}">{{text}}</td>
+      {{/each}}
+    </tr>
+    {{/each}}
+  </table>
 </template>
