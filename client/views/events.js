@@ -28,21 +28,33 @@ Template.calendar.helpers({
 , rows: function () {
     var users = Meteor.users.find({} , { sort: { 'profile.name': 1 } })
       , start = calendarStart.get() || Date.today()
+      // TODO: use partial
       , getUserData = function (user) {
-          var displayData = function (data) {
-              var text = toggle.classes(data.combined);
-              return _.extend(data, {
-                text: text
-              , css: text
-              });
-            }
-            , availability = _.map(availabilityData(start, user), displayData);
           return {
-            name: user.profile.name
-          , available: availability
+            user: user
+          , available: availabilityData(start, user)
+          };
+        }
+      , userData = users.map(getUserData)
+      , availableUsers = _.filter(userData, function (user) {
+          return _.any(user.available, function (data) {
+            return data.combined === 'y';
+          });
+        })
+      , displayAvailability = function (data) {
+          var text = toggle.classes(data.combined);
+          return _.extend(data, {
+            text: text
+          , css: text
+          });
+        }
+      , displayUserData = function (data) {
+          return {
+            name: data.user.profile.name
+          , available: _.map(data.available, displayAvailability)
           };
         };
-    return users.map(getUserData);
+    return _.map(availableUsers, displayUserData);
   }
 });
 Template.calendar.events({
@@ -105,7 +117,6 @@ Deps.autorun(function () {
   Meteor.subscribe("events"); //TODO: upcoming events only. use calendar Start? currentDate?
 });
 
-// TODO: Filter empty rows
 // TODO: email notification for invites
 // TODO: Available poeple are only defaults, can exclude them individually
 // TODO?: "My events" on settings (profile) page?
