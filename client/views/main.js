@@ -29,8 +29,7 @@ Meteor.startup(function () {
   currentTab.setDefault(tabs[0].template);
 });
 
+// TODO: Properly secured collections (allow/deny rules)
 // TODO: Chat
 // TODO: Game groups -> use publish/subscribe to cache only data for the group
-// TODO?: Cleanup of old exceptions (on server startup?).
-// TODO? --> or just remove non-overriding entries?
 // TODO?: Normalize timezones of dates to UTC?

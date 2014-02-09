@@ -1,4 +1,4 @@
-/* global Meteor, Exceptions */
+/* global Meteor, Exceptions, Events */
 
 Meteor.publish("user-availability", function (current, userId) {
   var start = current.clone().add(-1).weeks()
@@ -16,4 +16,8 @@ Meteor.publish("group-availability", function (current) {
     Meteor.users.find({}) // TODO: Filter by group
   , Exceptions.find({ date: { $gte: start, $lt: end } })
   ];
+});
+// TODO: get events only in a range (next two weeks?)
+Meteor.publish("events", function () {
+  return Events.find();
 });

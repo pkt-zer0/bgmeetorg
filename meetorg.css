@@ -15,14 +15,25 @@ th, td {
     border: 1px solid black;
 }
 th {
-    background-color: dimgray;
+    background-color: #696969;
     color: white;
 }
 td.filler, th.filler {
     border: none;
     background: none;
 }
+th.selected {
+    background-color: #ccc;
+    color: black;
+}
 
+button {
+    padding: 5px;
+    font-size: 1.3em;
+}
+.clickable {
+    cursor: pointer;
+}
 .schedule th, .schedule td {
     text-align: center;
     padding: 10px;
@@ -34,9 +45,6 @@ td.filler, th.filler {
     background-color: lightgray;
 }
 
-.toggle {
-    cursor: pointer;
-}
 .toggle.yes-def {
     background-color: #d9f6d9;
 }

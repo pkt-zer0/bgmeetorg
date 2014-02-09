@@ -28,7 +28,7 @@ Template.settings.events({
 Template.regular.helpers({
   days : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   available : function() {
-    // TODO?: Use a separate collection for this, rather than the profile?
+    // TODO?: Use a separate field for this, not in the profile
     var data = Meteor.user().profile.available;
     return _.map(data, function(value, index) {
       var toggleName = toggle.classes(value);
@@ -54,7 +54,7 @@ Template.regular.events({
 
 // Exceptions
 var selfAvailability = function() {
-  var start = exceptionsStart.get() || Date.today();
+  var start = exceptionsStart.get();
   return availabilityData(start, Meteor.user());
 };
 Template.exceptions.helpers({

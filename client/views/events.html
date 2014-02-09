@@ -1,4 +1,12 @@
 <template name="events">
+  {{>calendar}}
+  <h2>Create new event</h2>
+  {{>addEvent}}
+  <h2>Upcoming events</h2>
+  {{>upcoming}}
+  <!-- TODO?: Past events? -->
+</template>
+<template name="calendar">
   <table class="schedule" id="calendar">
     <tr>
       <td class="filler"></td>
@@ -6,13 +14,36 @@
     </tr>
     <tr>
       <th class="filler"></th>
-      {{> header header}}
+      {{#each header}}
+      <th class="clickable {{css}}">{{text}}</th>
+      {{/each}}
     </tr>
     {{#each rows}}
     <tr>
       <td>{{name}}</td>
-      {{>toggler available}}
+      {{#each available}}
+      <td class="clickable toggle {{css}}">{{text}}</td>
+      {{/each}}
     </tr>
     {{/each}}
   </table>
+</template>
+<template name="addEvent">
+  <label for="event_name">Title</label>
+  <input id="event_name" type="text"/>
+  <div>Date: {{date}}</div>
+  <div>
+    <span>Attendees:</span>
+    {{#each attendees}}
+    <span class="attendee">{{name}}</span>
+    {{/each}}
+  </div>
+  <button>Create!</button>
+</template>
+<template name="upcoming">
+  <ul>
+  {{#each upcoming}}
+  <li>{{title}} ({{date}})</li>
+  {{/each}}
+  </ul>
 </template>
