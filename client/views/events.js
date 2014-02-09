@@ -124,3 +124,4 @@ Deps.autorun(function () {
 // TODO: Recurring events
 // TODO: Create event starting with game (find suitable dates within a timerange)
 // TODO: Summary row with the number of people
+// TODO: Cleanup past events? (Or similar to exceptions, just don't bother?)
