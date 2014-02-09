@@ -86,7 +86,7 @@ Template.addEvent.events({
   'click button': function() {
     var title = $('#event_name').val()
       , date = selectedDate.get()
-      , members = _.pluck(attendees, 'id');
+      , members = _.pluck(attendees.get(), 'id');
     createEvent({
       title: title
     , date: date
@@ -117,8 +117,9 @@ Deps.autorun(function () {
   Meteor.subscribe("events"); //TODO: upcoming events only. use calendar Start? currentDate?
 });
 
-// TODO: email notification for invites
 // TODO: Available poeple are only defaults, can exclude them individually
+// TODO: Store person creating the event as 'host', has extra privileges
+// TODO: cancel events
 // TODO?: "My events" on settings (profile) page?
 // TODO: Recurring events
 // TODO: Create event starting with game (find suitable dates within a timerange)
